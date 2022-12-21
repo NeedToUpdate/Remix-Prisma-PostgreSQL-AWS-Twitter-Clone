@@ -89,7 +89,7 @@ export async function getUser(request: Request) {
   try {
     const user = await prisma.user.findUnique({
       where: { id: parseInt(userId) },
-      select: { id: true, email: true, tweets: true },
+      select: { id: true, email: true, tweets: true, firstName: true, lastName: true },
     });
     return user;
   } catch {

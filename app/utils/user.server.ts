@@ -14,3 +14,25 @@ export const createUser = async (user: RegisterForm) => {
   });
   return { id: newUser.id, email: user.email };
 };
+
+export const getOtherUsers = async (userId: number) => {
+  return prisma.user.findMany({
+    where: {
+      id: { not: userId },
+    },
+    orderBy: {
+      firstName: "asc",
+    },
+  });
+};
+
+export const getUserById = async (userId: number) => {
+  return await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    include: {
+      tweets: true,
+    },
+  });
+};
