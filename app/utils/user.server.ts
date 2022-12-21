@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import type { RegisterForm } from "./types.server";
 import { prisma } from "./prisma.server";
+import { User } from "@prisma/client";
 
 export const createUser = async (user: RegisterForm) => {
   const passwordHash = await bcrypt.hash(user.password, 10);
@@ -33,6 +34,18 @@ export const getUserById = async (userId: number) => {
     },
     include: {
       tweets: true,
+    },
+  });
+};
+
+export const updateUser = async (user: Partial<User>) => {
+  await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      firstName: user.firstName,
+      lastName: user.lastName,
     },
   });
 };
