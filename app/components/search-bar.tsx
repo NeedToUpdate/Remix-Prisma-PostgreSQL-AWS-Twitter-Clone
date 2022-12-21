@@ -30,7 +30,6 @@ export function SearchBar() {
           Clear Filters
         </button>
       )}
-      <div className="flex-1" />
     </form>
   );
 }

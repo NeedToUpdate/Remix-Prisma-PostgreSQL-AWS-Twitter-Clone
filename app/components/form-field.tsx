@@ -18,7 +18,7 @@ export function FormField({ htmlFor, label, type = "text", value, onChange = () 
 
   return (
     <>
-      <label htmlFor={htmlFor} className="text-blue-600 font-semibold">
+      <label htmlFor={htmlFor} className="text-sky-600 font-semibold">
         {label}
       </label>
       <input
@@ -29,7 +29,7 @@ export function FormField({ htmlFor, label, type = "text", value, onChange = () 
         type={type}
         id={htmlFor}
         name={htmlFor}
-        className="w-full p-2 rounded-sm my-1 border-solid border-[1px] border-blue-500"
+        className="w-full p-2 rounded-sm my-1 border-solid border-[1px] border-sky-500"
         value={value}
       />
       <div className="text-xs font-semibold text-center tracking-wide text-red-500 w-full">{errorText || ""}</div>
