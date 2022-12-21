@@ -51,10 +51,10 @@ interface ITweetWithAuthor extends ITweet {
 }
 export default function Home() {
   const { users, tweets, user } = useLoaderData();
+  console.log(user.profilePicture);
   return (
     <div className="w-full h-screen flex">
       <Outlet />
-      <UserPanel users={users} />
       <div className="flex flex-col w-full h-full">
         <TweetForm user={user} />
         <SearchBar />
