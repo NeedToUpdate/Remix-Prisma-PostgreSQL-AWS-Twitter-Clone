@@ -25,8 +25,31 @@ export const getAllTweets = async () => {
   });
 };
 
-export const getFilteredTweets = async (sortFilter: Prisma.TweetOrderByWithRelationInput, whereFilter: Prisma.TweetWhereInput) => {
+const tweetsPerPage = 5;
+export const getPaginatedTweets = async (page: number) => {
+  if (page < 1) {
+    return null;
+  }
+  return prisma.tweet.findMany({
+    skip: tweetsPerPage * (page - 1),
+    take: tweetsPerPage,
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      author: true,
+    },
+  });
+};
+
+export const getFilteredTweets = async (sortFilter: Prisma.TweetOrderByWithRelationInput, whereFilter: Prisma.TweetWhereInput, page: number) => {
+  if (page < 1) {
+    return null;
+  }
+  console.log({ skip: tweetsPerPage * (page - 1), take: tweetsPerPage });
   return await prisma.tweet.findMany({
+    skip: tweetsPerPage * (page - 1),
+    take: tweetsPerPage,
     select: {
       id: true,
       content: true,
