@@ -24,13 +24,13 @@ export default function TweetModal() {
     <Modal isOpen={true} className="w-2/3 p-10">
       <div className="flex flex-col md:flex-row gap-y-2 md:gap-y-0">
         <div className="text-center flex flex-col items-center gap-y-2 pr-8">
-          <UserCircle user={tweeter} className="h-12 w-12" />
+          <UserCircle user={tweeter} className="h-24 w-24" />
           <p className="text-sky-500">
             {tweeter.firstName} {tweeter.lastName}
           </p>
         </div>
         {tweeter.tweets.length > 0 ? (
-          <div className="flex-1 flex flex-col gap-y-4">
+          <div className="flex-1 flex flex-col gap-y-4 max-h-600[px] overflow-y-scroll">
             {tweeter.tweets.map((tweet: ITweet) => (
               <Tweet key={tweet.id} user={tweeter} tweet={tweet} />
             ))}
