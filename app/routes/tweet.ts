@@ -1,9 +1,9 @@
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { requireUserId } from "~/utils/auth.server";
-import { createTweet, getFilteredTweets, getPaginatedTweets } from "~/utils/tweet.server";
+import { createTweet, getFilteredTweets } from "~/utils/tweet.server";
 
 export const action: ActionFunction = async ({ request }) => {
   const userId = await requireUserId(request);

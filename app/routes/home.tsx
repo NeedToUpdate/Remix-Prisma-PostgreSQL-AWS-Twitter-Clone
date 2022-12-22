@@ -7,7 +7,8 @@ import { getUser, requireUserId } from "~/utils/auth.server";
 import { Tweet } from "~/components/tweet";
 import { getFilteredTweets } from "~/utils/tweet.server";
 import { SearchBar } from "~/components/search-bar";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+
 export const loader: LoaderFunction = async ({ request }) => {
   const userId = await requireUserId(request);
   const user = await getUser(request);
@@ -59,6 +60,7 @@ export default function Home() {
     fetcher.load(`/tweet?page=${page}`);
   };
   useEffect(() => {
+    //will run every time fetcher adds data from the button triggering the load()
     if (fetcher.data && fetcher.data.length === 0) {
       setMoreToLoad(false);
       return;
